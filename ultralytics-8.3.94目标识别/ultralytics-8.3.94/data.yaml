@@ -1,0 +1,15 @@
+train: C:\Users\19060\Desktop\ultralytics-8.3.94目标识别\ultralytics-8.3.94\dataset\ERCP_Dataset\images\train  # train images (relative to 'path') 8 images
+val: C:\Users\19060\Desktop\ultralytics-8.3.94目标识别\ultralytics-8.3.94\dataset\ERCP_Dataset\images\val  # val images (relative to 'path') 4 images
+
+nc: 3
+
+# class names 乳头开口，乳头根部，肠腔
+names: ['Papillary orifice', 'Root of the papilla', 'Intestinal lumen']
+
+augmentation:
+  mosaic: 1.0  # Mosaic概率
+  mixup: 0.2   # MixUp概率
+
+loss:
+  box: 0.05   # 降低定位损失权重
+  cls: 0.5    # 分类损失权重

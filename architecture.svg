@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="1000" height="620" viewBox="0 0 1000 620">
+  <style>
+    .box { fill:#f7f9fc; stroke:#2b6cb0; stroke-width:2; rx:8; }
+    .title { font: 600 18px 'Segoe UI', Arial; fill:#0b3b66; }
+    .label { font: 14px 'Segoe UI', Arial; fill:#0b3b66; }
+    .note { font: 12px 'Segoe UI', Arial; fill:#334155; }
+    .arrow { stroke:#2b6cb0; stroke-width:2; fill:none; marker-end:url(#arrowhead); }
+  </style>
+
+  <defs>
+    <marker id="arrowhead" markerWidth="10" markerHeight="7" refX="10" refY="3.5" orient="auto">
+      <polygon points="0 0, 10 3.5, 0 7" fill="#2b6cb0" />
+    </marker>
+  </defs>
+
+  <!-- Left column: ERCP project -->
+  <rect x="50" y="60" width="300" height="80" class="box" />
+  <text x="70" y="90" class="title">ercp_project</text>
+  <text x="70" y="112" class="label">- `ercp_env.py` (Gym 环境)</text>
+  <text x="70" y="132" class="label">- `cosserat_rod.py` (物理求解)</text>
+
+  <rect x="80" y="170" width="260" height="70" class="box" />
+  <text x="100" y="200" class="title">CosseratRod</text>
+  <text x="100" y="222" class="label">- 内力 / 步进 (step)</text>
+  <text x="100" y="238" class="label">- 塑性 / 旋转 / 质量</text>
+
+  <rect x="80" y="270" width="260" height="60" class="box" />
+  <text x="100" y="295" class="title">HertzContact</text>
+  <text x="100" y="315" class="label">- 接触检测/力计算（返回 torch.Tensor）</text>
+
+  <!-- arrows left column -->
+  <path d="M230 140 L230 170" class="arrow" />
+  <path d="M230 240 L230 270" class="arrow" />
+
+  <!-- Right column: Ultralytics -->
+  <rect x="560" y="60" width="360" height="100" class="box" />
+  <text x="580" y="90" class="title">ultralytics-8.3.94 (目标识别)</text>
+  <text x="580" y="112" class="label">- `detect.py`, `train.py`</text>
+  <text x="580" y="132" class="label">- 模型 (`*.pt`)、`dataset/`、`runs/`</text>
+
+  <!-- Shared / storage -->
+  <rect x="360" y="360" width="280" height="80" class="box" />
+  <text x="380" y="390" class="title">Data / Models (外部)</text>
+  <text x="380" y="412" class="label">- 大型数据集 (S3 / Drive)</text>
+  <text x="380" y="432" class="label">- 模型权重 (Releases / Git LFS)</text>
+
+  <!-- Tests -->
+  <rect x="50" y="360" width="280" height="80" class="box" />
+  <text x="70" y="390" class="title">tests/ (pytest)</text>
+  <text x="70" y="412" class="label">- `test_contact.py`, `test_rod.py`</text>
+  <text x="70" y="432" class="label">- 校验物理模型与接触模块</text>
+
+  <!-- Arrows: ERCPEnv -> CosseratRod -> HertzContact -->
+  <path d="M350 100 L560 100" class="arrow" />
+  <text x="410" y="92" class="note">(可交互/训练接口)</text>
+
+  <!-- Arrow from CosseratRod to Data/Models (to indicate usage of model/data) -->
+  <path d="M210 320 L450 320" class="arrow" />
+  <text x="330" y="312" class="note">读取/保存参数、外部数据</text>
+
+  <!-- Arrow Tests -> CosseratRod -->
+  <path d="M190 360 L190 270" class="arrow" />
+  <text x="200" y="325" class="note">单元测试调用内部 API</text>
+
+  <!-- Arrow Ultralytics -> Data/Models -->
+  <path d="M740 160 L640 240" class="arrow" />
+
+  <!-- Bottom legend -->
+  <rect x="50" y="470" width="870" height="120" fill="#ffffff" stroke="#94a3b8" rx="6" />
+  <text x="70" y="495" class="title">系统架构说明</text>
+  <text x="70" y="520" class="note">- `ERCPEnv` 封装物理模型，作为 Gym 环境用于控制/训练。</text>
+  <text x="70" y="540" class="note">- `CosseratRod` 实现杆件离散化、力学求解、时间积分与接触接口。</text>
+  <text x="70" y="560" class="note">- `HertzContact` 负责局部接触力计算并返回 Torch 张量。</text>
+  <text x="70" y="580" class="note">- `ultralytics-8.3.94` 为独立子模块，用于检测/训练，使用单独的数据与模型存储。</text>
+
+</svg>
