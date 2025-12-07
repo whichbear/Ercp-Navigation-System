@@ -106,45 +106,6 @@ Ultralytics 子目录包含 `detect.py`、训练脚本和数据集组织示例�
 cd "ultralytics-8.3.94目标识别\ultralytics-8.3.94"
 python detect.py --source path/to/images --weights path/to/weights.pt
 ```
- 
-## 如何发布到 GitHub（示例）
 
-```powershell
-# 进入项目目录
-cd 'd:\ercp下插管导航系统'
-
-#（可选）先检查本地最大的文件，避免意外把大模型/数据提交上来
-Get-ChildItem -Recurse -File | Sort-Object Length -Descending |
-	Select-Object FullName,@{Name='SizeMB';Expression={[math]::Round($_.Length/1MB,2)}} -First 30
-
-# 初始化仓库（若已经是 git 仓库可跳过）
-git init
-
-# 确保 .gitignore 存在且规则正确
-git add .gitignore
-
-# 添加 README 和其他小文件（先不要 add 整个目录，如果不确定是否含大文件）
-git add README.md requirements.txt
-
-# 或者一次性添加所有（在你确认没有已跟踪的大文件后）
-# git add .
-
-# 提交
-git commit -m "Initial: add README, .gitignore, requirements"
-
-# 添加远程(使用 HTTPS)
-git remote add origin https://github.com/whichbear/Ercp-Navigation-System.git
-
-# 将分支改名为 main（如需要）
-git branch -M main
-
-# 推送到远程（首次推送设置 upstream）
-git push -u origin main
-```
-
-如果历史中已包含大文件，请在推送前使用 `git filter-repo` 或 BFG 清理历史，我可以协助。
-
-
-## 贡献与许可证
 - 欢迎提交 issue 或 PR。若准备公开，请补充 `LICENSE`（例如 MIT 或 Apache-2.0）。
 
